@@ -611,7 +611,9 @@ $$
 
 Where:
 
-* $\theta = \begin{bmatrix} c \\ m_1 \\ m_2 \end{bmatrix}$
+* $$
+\theta = \begin{bmatrix} c \\ m_1 \\ m_2 \end{bmatrix}
+$$
 
 Let’s calculate step-by-step using Python (for matrix math).
 
