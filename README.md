@@ -703,6 +703,250 @@ $$
 
 ---
 
+## 📊 Evaluation Metrics for Regression
+
+Evaluation metrics help us understand how well our regression model is performing. These are used after building a regression model (like **Linear Regression**, **Polynomial Regression**, **Ridge**, etc.).
+
+---
+
+### 🧮 1. **Mean Absolute Error (MAE)**
+
+#### ➤ **Formula:**
+
+$$
+\text{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
+$$
+
+* $y_i$ = Actual value
+* $\hat{y}_i$ = Predicted value
+* $n$ = Total number of data points
+
+#### ✅ **When to Use:**
+
+* When you want **equal weight to all errors** (small or large).
+* Good for real-world interpretation (e.g., average ₹ or ₹ error).
+
+#### 📘 **Example:**
+
+| Actual (y) | Predicted ($\hat{y}$) | Absolute Error |
+| ---------- | --------------------- | -------------- |
+| 100        | 90                    | 10             |
+| 150        | 130                   | 20             |
+| 200        | 180                   | 20             |
+
+$$
+\text{MAE} = \frac{10 + 20 + 20}{3} = 16.67
+$$
+
+#### 📊 **Best For Data Type:**
+
+* **Continuous data** (e.g., prices, temperature)
+
+---
+
+### 🧮 2. **Mean Squared Error (MSE)**
+
+#### ➤ **Formula:**
+
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+* Penalizes **larger errors more** than small ones
+
+#### ✅ **When to Use:**
+
+* When **large errors are bad** (e.g., in forecasting sensitive data).
+
+#### 📘 **Example:**
+
+Using same data as MAE:
+
+$$
+\text{MSE} = \frac{(10)^2 + (20)^2 + (20)^2}{3} = \frac{100 + 400 + 400}{3} = 300
+$$
+
+#### 📊 **Best For Data Type:**
+
+* Continuous data
+
+---
+
+### 🧮 3. **Root Mean Squared Error (RMSE)**
+
+#### ➤ **Formula:**
+
+$$
+\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{300} \approx 17.32
+$$
+
+* Same unit as original values (more interpretable than MSE)
+
+#### ✅ **When to Use:**
+
+* Same as MSE, but easier to understand.
+* Good for comparing errors in actual units (like ₹, kg, etc.)
+
+---
+
+### 🧮 4. **R² Score (Coefficient of Determination)**
+
+#### ➤ **Formula:**
+
+$$
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
+$$
+
+* Measures how well the model **explains variance** in data.
+
+#### ➤ **Range:**
+
+$$
+-\infty < R^2 \leq 1
+$$
+
+* $R^2 = 1$: Perfect prediction
+* $R^2 = 0$: Model predicts no better than mean
+* $R^2 < 0$: Model is worse than mean
+
+#### ✅ **When to Use:**
+
+* To judge **model accuracy** and comparison between multiple models.
+
+#### 📘 **Example:**
+
+Let:
+
+* Total variance = 100
+* Unexplained (error) variance = 30
+
+$$
+R^2 = 1 - \frac{30}{100} = 0.7
+$$
+
+Means model explains **70%** of the variance in data.
+
+---
+
+### 🧮 5. **Adjusted R² Score**
+
+#### ➤ **Formula:**
+
+$$
+\text{Adjusted } R^2 = 1 - \left( \frac{(1 - R^2)(n - 1)}{n - k - 1} \right)
+$$
+
+* $n$: number of observations
+* $k$: number of features
+
+#### ✅ **When to Use:**
+
+* When using **multiple features**.
+* It **penalizes unnecessary features**.
+
+---
+
+## 🧪 Which Metric to Use When?
+
+| Metric      | Use Case                             | Suitable for            |
+| ----------- | ------------------------------------ | ----------------------- |
+| MAE         | Interpretability, equal error weight | Continuous data         |
+| MSE         | Penalize large errors                | Forecasting             |
+| RMSE        | MSE but interpretable                | Real-world applications |
+| R² Score    | Overall model accuracy               | All regression types    |
+| Adjusted R² | Multiple feature regression          | Multiple Linear/Poly    |
+
+---
+
+### 💡 Code Example (in Python):
+
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+y_true = [100, 150, 200]
+y_pred = [90, 130, 180]
+
+mae = mean_absolute_error(y_true, y_pred)
+mse = mean_squared_error(y_true, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_true, y_pred)
+
+print(f"MAE: {mae}")
+print(f"MSE: {mse}")
+print(f"RMSE: {rmse}")
+print(f"R²: {r2}")
+```
+
+---
+
+## 📌 Summary Table:
+
+| Metric      | Penalize Large Errors | Easy to Interpret | Range   |
+| ----------- | --------------------- | ----------------- | ------- |
+| MAE         | ❌                     | ✅                 | ≥ 0     |
+| MSE         | ✅                     | ❌                 | ≥ 0     |
+| RMSE        | ✅                     | ✅                 | ≥ 0     |
+| R² Score    | ✅                     | ✅                 | -∞ to 1 |
+| Adjusted R² | ✅                     | ✅                 | -∞ to 1 |
+
+---
+
+### 📊 Interpreting Regression Error: What to Do Next
+
+| Situation                                                              | What It Means                                   | Typical Actions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Error is high on both training & test sets**<br>(underfitting)       | Model isn’t capturing the underlying pattern.   | • **Add complexity** – try higher‑degree polynomial features, a less‑regularized model, or a more powerful algorithm (e.g., tree‑based methods, gradient boosting, neural nets).<br>• **Feature engineering** – create interaction terms, log/√ transformations, domain‑specific variables.<br>• **Increase training time / tweak learning rate** (for iterative models).<br>• **Check data quality** – fix wrong labels, outliers, missing values.<br>• **Collect more or richer data** if possible. |
+| **Low training error but high test/validation error**<br>(overfitting) | Model memorizes noise instead of general rules. | • **Simplify the model** – lower polynomial degree, prune trees, drop layers/neurons.<br>• **Add regularization** – L1/L2 penalties, dropout, early stopping.<br>• **Cross‑validation** – tune hyper‑parameters on k‑fold CV, not just one split.<br>• **More data / data augmentation** – gives the model something real to learn.<br>• **Ensemble averaging** – bagging or stacking can smooth out variance errors.                                                                                 |
+| **Error is low on both training & test sets**                          | Model is performing well **and** generalizing.  | • **Validate business impact** – is the error small enough in real‑world units?<br>• **Check edge cases** – rare or extreme inputs the model hasn’t seen.<br>• **Monitor in production** – concept drift can raise error over time.<br>• **Avoid needless complexity** – keep the simplest model that meets the requirement (easier to explain & maintain).                                                                                                                                           |
+| **Error is very close to zero**                                        | Could be perfect, or could signal data leakage. | • **Re‑examine data pipeline** – ensure test data never leaked into training.<br>• **Confirm metric on a completely unseen hold‑out**.<br>• **Watch for unusually simple patterns** (e.g., an ID column accidentally used as a feature).                                                                                                                                                                                                                                                              |
+
+---
+
+#### 🔧 Practical Checklist for High Error
+
+1. **Diagnostics first**
+
+   * Plot residuals vs. predictions.
+   * Look for patterns → suggests missing non‑linear features.
+
+2. **Feature work**
+
+   * Try polynomial features or interaction terms.
+   * Scale/normalize if the algorithm is distance‑based.
+
+3. **Model selection & tuning**
+
+   * Grid‑search different algorithms and hyper‑parameters.
+   * Use cross‑validation to pick what truly improves generalization.
+
+4. **Regularization & ensemble tricks**
+
+   * If variance is the issue, add regularization or combine models.
+   * If bias is the issue, use a richer model.
+
+5. **Data strategy**
+
+   * Increase sample size.
+   * Correct label noise; address outliers thoughtfully.
+
+---
+
+#### 🔍 Practical Checklist for Low Error
+
+1. **Verify with another split or time‑based hold‑out**.
+2. **Compute multiple metrics** (MAE, RMSE, R²) to be sure performance is balanced.
+3. **Stress‑test** on edge cases or synthetic worst‑case inputs.
+4. **Deploy with monitoring**: set up alert thresholds so you’ll know if error drifts upward.
+5. **Document** assumptions, feature importance, and limitations for stakeholders.
+
+---
+
+**Key takeaway:**
+
+* **High error** → diagnose bias vs. variance, then act (more data, feature engineering, model tuning, regularization).
+* **Low error** → confirm it’s genuine, guard against data leakage, monitor in production, and keep the model as simple as possible while meeting the goal.
+
 
 
 
