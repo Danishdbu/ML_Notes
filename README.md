@@ -1,6 +1,3 @@
-Absolutely, Danish! Here's a **beginner-friendly note** on **Overfitting and Underfitting** in **Machine Learning**, explained simply with definitions, examples, and solutions for each case. Let's break this down like a tutor teaching a class:
-
----
 
 # 📘 Overfitting and Underfitting in Machine Learning
 
