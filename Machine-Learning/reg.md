@@ -1239,8 +1239,9 @@ print(f'Final w: {w:.2f}, b: {b:.2f}')
 
 # 🧠 Ridge & Lasso Regression (with Regularization)
 
-> Gradient Descent minimizes:  
-> **Loss Function + Penalty Term**
+> Gradient descent minimizes loss + penalty term 
+> Helps avoid overfitting
+
 
 ---
 🔄 **Types of Gradient Descent**:
