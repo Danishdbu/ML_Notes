@@ -1175,16 +1175,6 @@ So new parameters are $w = 1.8$, $b = 0.4$
 
 ---
 
-## 🔄 Types of Gradient Descent
-
-| Type                 | Description                              |
-| -------------------- | ---------------------------------------- |
-| **Batch**            | Uses entire dataset for each update      |
-| **Stochastic (SGD)** | Uses 1 sample at a time                  |
-| **Mini-batch**       | Uses small groups (e.g., 32, 64 samples) |
-
----
-
 ## 🧪 Python Code Example
 
 ```python
