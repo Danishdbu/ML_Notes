@@ -37,7 +37,7 @@ This is overfitting.
 
 ---
 
-### 💡 Causes of Overfitting:
+### 💡 Causes of Overfitting: 
 
 * Model is too complex (e.g., deep decision trees, high-degree polynomial regression)
 * Too few training data points
