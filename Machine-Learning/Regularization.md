@@ -217,21 +217,19 @@ $$
 
 * Add $\lambda I$ to $X^T X$:
 
-$$
+\[
 \begin{bmatrix}
 4+1 & 10 & 14 \\
 10 & 30+1 & 40 \\
 14 & 40 & 54+1
 \end{bmatrix}
-$$
 =
-$$
 \begin{bmatrix}
 5 & 10 & 14 \\
 10 & 31 & 40 \\
 14 & 40 & 55
-\end{bmatrix} 
-$$
+\end{bmatrix}
+\]
 
 * Invert and multiply with $X^T y$ → coefficients shrink compared to OLS.
 
