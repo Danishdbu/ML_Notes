@@ -228,7 +228,7 @@ $$
 5 & 10 & 14 \\
 10 & 31 & 40 \\
 14 & 40 & 55
-\end{bmatrix}
+\end{bmatrix} 
 $$
 
 * Invert and multiply with $X^T y$ → coefficients shrink compared to OLS.
