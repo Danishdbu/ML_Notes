@@ -224,7 +224,7 @@ $$
 14 & 40 & 54+1
 \end{bmatrix}
 $$
-\;=\;
+$$=$$
 $$
 \begin{bmatrix}
 5 & 10 & 14 \\
@@ -257,8 +257,13 @@ X \;=\;
 1 & 4 & 5
 \end{bmatrix}$$
 ,\qquad
-y=$$
-\begin{bmatrix}4\\5\\6\\7\end{bmatrix}
+y=
+\begin{bmatrix}
+4\\
+5\\
+6\\
+7
+\end{bmatrix}
 $$
 
 (Columns: intercept, $x_1$, $x_2$.)
