@@ -249,7 +249,7 @@ $$
 We include an intercept term in $X$. So the design matrix $X$ (with column 1 = intercept) and $y$ are:
 
 $$
-X \;=\;
+X \=\
 \begin{bmatrix}
 1 & 1 & 2\\
 1 & 2 & 3\\
@@ -257,8 +257,9 @@ X \;=\;
 1 & 4 & 5
 \end{bmatrix}$$
 ,\qquad
-y=
-\begin{bmatrix}
+$$
+y\=\
+$$\begin{bmatrix}
 4\\
 5\\
 6\\
