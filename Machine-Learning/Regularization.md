@@ -222,7 +222,8 @@ $$
 4+1 & 10 & 14 \\
 10 & 30+1 & 40 \\
 14 & 40 & 54+1
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 =
 $$
 \begin{bmatrix}
