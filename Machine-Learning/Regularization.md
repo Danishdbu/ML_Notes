@@ -251,9 +251,9 @@ We include an intercept term in $X$. So the design matrix $X$ (with column 1 = i
 $$
 X \;=\;
 \begin{bmatrix}
-1 & 1 & 2\\[4pt]
-1 & 2 & 3\\[4pt]
-1 & 3 & 4\\[4pt]
+1 & 1 & 2\\
+1 & 2 & 3\\
+1 & 3 & 4\\
 1 & 4 & 5
 \end{bmatrix}
 ,\qquad
