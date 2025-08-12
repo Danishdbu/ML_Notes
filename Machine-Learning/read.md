@@ -62,21 +62,15 @@ usemathjax: true
 
 Cost function:
 
-$$
-J(\beta) = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij})^2
-$$
+![Formula](https://latex.codecogs.com/svg.image?J(\beta)\;=\;\sum_{i=1}^{n}\;(y_i\;-\;\beta_0\;-\;\sum_{j=1}^p\;\beta_j\;x_{ij})^2)
 
 Matrix form:
 
-$$
-J(\beta) = (y - X\beta)^T (y - X\beta)
-$$
+![Formula](https://latex.codecogs.com/svg.image?J(\beta)\;=\;(y\;-\;X\beta)^T\;(y\;-\;X\beta))
 
 Closed-form OLS solution:
 
-$$
-\hat{\beta}_{OLS} = (X^T X)^{-1} X^T y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{OLS}\;=\;(X^T\;X)^{-1}\;X^T\;y)
 
 ---
 
@@ -84,26 +78,20 @@ $$
 
 Cost function with L2 penalty:
 
-$$
-J(\beta) = (y - X\beta)^T (y - X\beta) + \lambda \sum_{j=1}^p \beta_j^2
-$$
+![Formula](https://latex.codecogs.com/svg.image?J(\beta)\;=\;(y\;-\;X\beta)^T\;(y\;-\;X\beta)\;+\;\lambda\;\sum_{j=1}^p\;\beta_j^2)
 
 Matrix form:
 
-$$
-J(\beta) = (y - X\beta)^T (y - X\beta) + \lambda \beta^T \beta
-$$
+![Formula](https://latex.codecogs.com/svg.image?J(\beta)\;=\;(y\;-\;X\beta)^T\;(y\;-\;X\beta)\;+\;\lambda\;\beta^T\;\beta)
 
 Closed-form Ridge solution:
 
-$$
-\hat{\beta}_{Ridge} = (X^T X + \lambda I)^{-1} X^T y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{Ridge}\;=\;(X^T\;X\;+\;\lambda\;I)^{-1}\;X^T\;y)
 
 Where:
 
-* $\lambda$ (alpha in scikit-learn) ≥ 0 is the regularization parameter.
-* $I$ is the identity matrix (size $p \times p$).
+* ![Formula](https://latex.codecogs.com/svg.image?\lambda) (alpha in scikit-learn) ≥ 0 is the regularization parameter.
+* ![Formula](https://latex.codecogs.com/svg.image?I) is the identity matrix (size ![Formula](https://latex.codecogs.com/svg.image?p\;\times\;p)).
 
 ---
 
@@ -111,8 +99,8 @@ Where:
 
 ### **How L2 Penalty Shrinks Coefficients**
 
-* The term $\lambda \beta^T \beta$ penalizes large coefficients.
-* Larger $\lambda$ → more shrinkage toward zero.
+* The term ![Formula](https://latex.codecogs.com/svg.image?\lambda\;\beta^T\;\beta) penalizes large coefficients.
+* Larger ![Formula](https://latex.codecogs.com/svg.image?\lambda) → more shrinkage toward zero.
 * No coefficient is exactly zero (unlike Lasso).
 
 ---
@@ -159,140 +147,79 @@ Let’s use a **tiny dataset**:
 
 ### **Matrix Form**
 
-$$
-X =
-\begin{bmatrix}
-1 & 1 & 2 \\
-1 & 2 & 3 \\
-1 & 3 & 4 \\
-1 & 4 & 5
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?X\;=\begin{bmatrix}1\;&\;1\;&\;2\;\\1\;&\;2\;&\;3\;\\1\;&\;3\;&\;4\;\\1\;&\;4\;&\;5\end{bmatrix})
 
 (First column = intercept term)
 
-$$
-y =
-\begin{bmatrix}
-4 \\ 5 \\ 6 \\ 7
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?y\;=\begin{bmatrix}4\;\\\;5\;\\\;6\;\\\;7\end{bmatrix})
 
 ---
 
 ### **Step 1: OLS Coefficients**
 
-$$
-\hat{\beta}_{OLS} = (X^T X)^{-1} X^T y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{OLS}\;=\;(X^T\;X)^{-1}\;X^T\;y)
 
-1. $X^T X$
+1. ![Formula](https://latex.codecogs.com/svg.image?X^T\;X)
 
-$$
-\begin{bmatrix}
-4 & 10 & 14 \\
-10 & 30 & 40 \\
-14 & 40 & 54
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\begin{bmatrix}4\;&\;10\;&\;14\;\\10\;&\;30\;&\;40\;\\14\;&\;40\;&\;54\end{bmatrix})
 
-2. $X^T y$
+2. ![Formula](https://latex.codecogs.com/svg.image?X^T\;y)
 
-$$
-\begin{bmatrix}
-22 \\ 65 \\ 87
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\begin{bmatrix}22\;\\\;65\;\\\;87\end{bmatrix})
 
-3. Invert $X^T X$ → multiply → get OLS coefficients:
+3. Invert ![Formula](https://latex.codecogs.com/svg.image?X^T\;X) → multiply → get OLS coefficients:
 
-$$
-\hat{\beta}_{OLS} \approx [2, 1, 0]
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{OLS}\;\approx\;[2,\;1,\;0])
 
 ---
 
 ### **Step 2: Ridge Coefficients (λ = 1)**
 
-$$
-\hat{\beta}_{Ridge} = (X^T X + \lambda I)^{-1} X^T y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{Ridge}\;=\;(X^T\;X\;+\;\lambda\;I)^{-1}\;X^T\;y)
 
-* Add $\lambda I$ to $X^T X$:
+* Add ![Formula](https://latex.codecogs.com/svg.image?\lambda\;I) to ![Formula](https://latex.codecogs.com/svg.image?X^T\;X):
 
-$$
-\begin{bmatrix}
-4+1 & 10 & 14 \\
-10 & 30+1 & 40 \\
-14 & 40 & 54+1
-\end{bmatrix}
-$$
-$$=$$
-$$
-\begin{bmatrix}
-5 & 10 & 14 \\
-10 & 31 & 40 \\
-14 & 40 & 55
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\begin{bmatrix}4+1\;&\;10\;&\;14\;\\10\;&\;30+1\;&\;40\;\\14\;&\;40\;&\;54+1\end{bmatrix})
+![Formula](https://latex.codecogs.com/svg.image?=)
+![Formula](https://latex.codecogs.com/svg.image?\begin{bmatrix}5\;&\;10\;&\;14\;\\10\;&\;31\;&\;40\;\\14\;&\;40\;&\;55\end{bmatrix})
 
-* Invert and multiply with $X^T y$ → coefficients shrink compared to OLS.
+* Invert and multiply with ![Formula](https://latex.codecogs.com/svg.image?X^T\;y) → coefficients shrink compared to OLS.
 
 ---
 
 ## Dataset (given)
 
-| row | $x_1$ | $x_2$ | $y$ |
+| row | ![Formula](https://latex.codecogs.com/svg.image?x_1) | ![Formula](https://latex.codecogs.com/svg.image?x_2) | ![Formula](https://latex.codecogs.com/svg.image?y) |
 | --- | ----: | ----: | --: |
 | 1   |     1 |     2 |   4 |
 | 2   |     2 |     3 |   5 |
 | 3   |     3 |     4 |   6 |
 | 4   |     4 |     5 |   7 |
 
-We include an intercept term in $X$. So the design matrix $X$ (with column 1 = intercept) and $y$ are:
+We include an intercept term in ![Formula](https://latex.codecogs.com/svg.image?X). So the design matrix ![Formula](https://latex.codecogs.com/svg.image?X) (with column 1 = intercept) and ![Formula](https://latex.codecogs.com/svg.image?y) are:
 
-$$
-X \;=\;
-\begin{bmatrix}
-1 & 1 & 2\\[4pt]
-1 & 2 & 3\\[4pt]
-1 & 3 & 4\\[4pt]
-1 & 4 & 5
-\end{bmatrix}
-,\qquad
-y=\begin{bmatrix}4\\5\\6\\7\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?X\;\;=\;\begin{bmatrix}1\;&\;1\;&\;2\\[4pt]1\;&\;2\;&\;3\\[4pt]1\;&\;3\;&\;4\\[4pt]1\;&\;4\;&\;5\end{bmatrix},\qquady=\begin{bmatrix}4\\5\\6\\7\end{bmatrix})
 
-(Columns: intercept, $x_1$, $x_2$.)
+(Columns: intercept, ![Formula](https://latex.codecogs.com/svg.image?x_1), ![Formula](https://latex.codecogs.com/svg.image?x_2).)
 
 ---
 
-## 1) Compute $X^\top X$ and $X^\top y$
+## 1) Compute ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X) and ![Formula](https://latex.codecogs.com/svg.image?X^\top\;y)
 
-$$
-X^\top X =
-\begin{bmatrix}
-4 & 10 & 14\\[4pt]
-10 & 30 & 40\\[4pt]
-14 & 40 & 54
-\end{bmatrix}
-\qquad
-X^\top y =
-\begin{bmatrix}22\\60\\82\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?X^\top\;X\;=\begin{bmatrix}4\;&\;10\;&\;14\\[4pt]10\;&\;30\;&\;40\\[4pt]14\;&\;40\;&\;54\end{bmatrix}\qquadX^\top\;y\;=\begin{bmatrix}22\\60\\82\end{bmatrix})
 
 (You can verify the entries by summing products row-by-row.)
 
 ---
 
-## 2) Try OLS: $\hat\beta_{OLS} = (X^\top X)^{-1} X^\top y$
+## 2) Try OLS: ![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{OLS}\;=\;(X^\top\;X)^{-1}\;X^\top\;y)
 
-We attempt to invert $X^\top X$. But:
+We attempt to invert ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X). But:
 
-* $X^\top X$ is **singular** (non-invertible) for this dataset.
-  Reason: **perfect multicollinearity** between the two features — here $x_2 = x_1 + 1$ (column 3 is a linear combination of column 2 and the intercept). That makes columns of $X$ linearly dependent and $X^\top X$ singular.
+* ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X) is **singular** (non-invertible) for this dataset.
+  Reason: **perfect multicollinearity** between the two features — here ![Formula](https://latex.codecogs.com/svg.image?x_2\;=\;x_1\;+\;1) (column 3 is a linear combination of column 2 and the intercept). That makes columns of ![Formula](https://latex.codecogs.com/svg.image?X) linearly dependent and ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X) singular.
 
-So the usual OLS closed-form cannot be computed (no unique $(X^\top X)^{-1}$ exists).
+So the usual OLS closed-form cannot be computed (no unique ![Formula](https://latex.codecogs.com/svg.image?(X^\top\;X)^{-1}) exists).
 
 **This is exactly why regularization (Ridge) is useful.**
 
@@ -300,16 +227,9 @@ So the usual OLS closed-form cannot be computed (no unique $(X^\top X)^{-1}$ exi
 
 ## 3) A pseudo-inverse (one possible OLS solution)
 
-Although $(X^\top X)^{-1}$ does not exist, the Moore–Penrose **pseudo-inverse** produces one least-squares solution (the minimum-norm solution). Using the pseudo-inverse:
+Although ![Formula](https://latex.codecogs.com/svg.image?(X^\top\;X)^{-1}) does not exist, the Moore–Penrose **pseudo-inverse** produces one least-squares solution (the minimum-norm solution). Using the pseudo-inverse:
 
-$$
-\hat\beta_{\text{pinv}} = X^{+} y \approx
-\begin{bmatrix}
-1.66666667\\[4pt]
--0.33333333\\[4pt]
-1.33333333
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{pinv}}\;=\;X^{+}\;y\;\approx\begin{bmatrix}1.66666667\\[4pt]-0.33333333\\[4pt]1.33333333\end{bmatrix})
 
 Interpretation: because of perfect collinearity, there are infinitely many OLS solutions; the pseudo-inverse gives the minimum-Euclidean-norm one. But in practice we prefer a stable unique estimator — enter Ridge.
 
@@ -317,186 +237,108 @@ Interpretation: because of perfect collinearity, there are infinitely many OLS s
 
 ## 4) Ridge Regression: formula (matrix form)
 
-$$
-\hat{\beta}_{\text{Ridge}} = \bigl(X^\top X + \lambda I\bigr)^{-1} X^\top y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{\text{Ridge}}\;=\;\bigl(X^\top\;X\;+\;\lambda\;I\bigr)^{-1}\;X^\top\;y)
 
-Important practical detail used here: **do not penalize the intercept**. Implementation-wise that's handled by using a diagonal matrix $I$ with the intercept position set to 0 (i.e. $I_{00}=0$), so the intercept is not shrunk.
+Important practical detail used here: **do not penalize the intercept**. Implementation-wise that's handled by using a diagonal matrix ![Formula](https://latex.codecogs.com/svg.image?I) with the intercept position set to 0 (i.e. ![Formula](https://latex.codecogs.com/svg.image?I_{00}=0)), so the intercept is not shrunk.
 
 ---
 
-## 5) Compute Ridge for $\lambda=1$
+## 5) Compute Ridge for ![Formula](https://latex.codecogs.com/svg.image?\lambda=1)
 
 ### 5.1 Build the regularized matrix
 
-We add $\lambda I$, but keep intercept unpenalized (so only diagonal entries for feature columns are increased):
+We add ![Formula](https://latex.codecogs.com/svg.image?\lambda\;I), but keep intercept unpenalized (so only diagonal entries for feature columns are increased):
 
-$$
-X^\top X + \lambda I =
-\begin{bmatrix}
-4 & 10 & 14\\
-10 & 30 & 40\\
-14 & 40 & 54
-\end{bmatrix}
-+
-\begin{bmatrix}
-0 & 0 & 0\\
-0 & 1 & 0\\
-0 & 0 & 1
-\end{bmatrix}
-=
-\begin{bmatrix}
-4 & 10 & 14\\
-10 & 31 & 40\\
-14 & 40 & 55
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?X^\top\;X\;+\;\lambda\;I\;=\begin{bmatrix}4\;&\;10\;&\;14\\10\;&\;30\;&\;40\\14\;&\;40\;&\;54\end{bmatrix}+\begin{bmatrix}0\;&\;0\;&\;0\\0\;&\;1\;&\;0\\0\;&\;0\;&\;1\end{bmatrix}=\begin{bmatrix}4\;&\;10\;&\;14\\10\;&\;31\;&\;40\\14\;&\;40\;&\;55\end{bmatrix})
 
 ### 5.2 Inverse of that matrix (numeric)
 
-$$
-\bigl(X^\top X + 1\cdot I\bigr)^{-1} \approx
-\begin{bmatrix}
-2.38636364 & 0.22727273 & -0.77272727\\[4pt]
-0.22727273 & 0.54545455 & -0.45454545\\[4pt]
--0.77272727 & -0.45454545 & 0.54545455
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\bigl(X^\top\;X\;+\;1\cdot\;I\bigr)^{-1}\;\approx\begin{bmatrix}2.38636364\;&\;0.22727273\;&\;-0.77272727\\[4pt]0.22727273\;&\;0.54545455\;&\;-0.45454545\\[4pt]-0.77272727\;&\;-0.45454545\;&\;0.54545455\end{bmatrix})
 
-### 5.3 Multiply by $X^\top y$
+### 5.3 Multiply by ![Formula](https://latex.codecogs.com/svg.image?X^\top\;y)
 
-Compute $\hat\beta_{\text{ridge},\lambda=1} = A^{-1} (X^\top y)$:
+Compute ![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{ridge},\lambda=1}\;=\;A^{-1}\;(X^\top\;y)):
 
-$$
-\hat\beta_{\text{ridge},\lambda=1} \approx
-\begin{bmatrix}
-2.77272727\\[4pt]
-0.45454545\\[4pt]
-0.45454545
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{ridge},\lambda=1}\;\approx\begin{bmatrix}2.77272727\\[4pt]0.45454545\\[4pt]0.45454545\end{bmatrix})
 
-So for $\lambda=1$:
+So for ![Formula](https://latex.codecogs.com/svg.image?\lambda=1):
 
-* Intercept $\beta_0 \approx 2.7727$
-* $\beta_1 \approx 0.4545$
-* $\beta_2 \approx 0.4545$
+* Intercept ![Formula](https://latex.codecogs.com/svg.image?\beta_0\;\approx\;2.7727)
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_1\;\approx\;0.4545)
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_2\;\approx\;0.4545)
 
-Notice: $\beta_1$ and $\beta_2$ are equal (because of symmetry in the data since $x_2 = x_1+1$), and they are **shrunken** relative to some unconstrained solutions. Ridge gave a unique stable solution.
+Notice: ![Formula](https://latex.codecogs.com/svg.image?\beta_1) and ![Formula](https://latex.codecogs.com/svg.image?\beta_2) are equal (because of symmetry in the data since ![Formula](https://latex.codecogs.com/svg.image?x_2\;=\;x_1+1)), and they are **shrunken** relative to some unconstrained solutions. Ridge gave a unique stable solution.
 
 ---
 
-## 6) Compute Ridge for $\lambda=10$
+## 6) Compute Ridge for ![Formula](https://latex.codecogs.com/svg.image?\lambda=10)
 
 ### 6.1 Regularized matrix
 
-$$
-X^\top X + 10 \cdot I =
-\begin{bmatrix}
-4 & 10 & 14\\
-10 & 30 & 40\\
-14 & 40 & 54
-\end{bmatrix}
-+
-\begin{bmatrix}
-0 & 0 & 0\\
-0 & 10 & 0\\
-0 & 0 & 10
-\end{bmatrix}
-=
-\begin{bmatrix}
-4 & 10 & 14\\
-10 & 40 & 40\\
-14 & 40 & 64
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?X^\top\;X\;+\;10\;\cdot\;I\;=\begin{bmatrix}4\;&\;10\;&\;14\\10\;&\;30\;&\;40\\14\;&\;40\;&\;54\end{bmatrix}+\begin{bmatrix}0\;&\;0\;&\;0\\0\;&\;10\;&\;0\\0\;&\;0\;&\;10\end{bmatrix}=\begin{bmatrix}4\;&\;10\;&\;14\\10\;&\;40\;&\;40\\14\;&\;40\;&\;64\end{bmatrix})
 
 ### 6.2 Inverse of that matrix (numeric)
 
-$$
-\bigl(X^\top X + 10 I\bigr)^{-1} \approx
-\begin{bmatrix}
-1.200 & -0.100 & -0.200\\[4pt]
--0.100 & 0.075 & -0.025\\[4pt]
--0.200 & -0.025 & 0.075
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\bigl(X^\top\;X\;+\;10\;I\bigr)^{-1}\;\approx\begin{bmatrix}1.200\;&\;-0.100\;&\;-0.200\\[4pt]-0.100\;&\;0.075\;&\;-0.025\\[4pt]-0.200\;&\;-0.025\;&\;0.075\end{bmatrix})
 
-### 6.3 Multiply by $X^\top y$
+### 6.3 Multiply by ![Formula](https://latex.codecogs.com/svg.image?X^\top\;y)
 
-$$
-\hat\beta_{\text{ridge},\lambda=10} =
-\begin{bmatrix}
-4.0\\[4pt]
-0.25\\[4pt]
-0.25
-\end{bmatrix}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{ridge},\lambda=10}\;=\begin{bmatrix}4.0\\[4pt]0.25\\[4pt]0.25\end{bmatrix})
 
-So for $\lambda=10$:
+So for ![Formula](https://latex.codecogs.com/svg.image?\lambda=10):
 
-* Intercept $\beta_0 = 4.0$
-* $\beta_1 = 0.25$
-* $\beta_2 = 0.25$
+* Intercept ![Formula](https://latex.codecogs.com/svg.image?\beta_0\;=\;4.0)
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_1\;=\;0.25)
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_2\;=\;0.25)
 
-**Interpretation:** Increasing $\lambda$ shrinks the slope coefficients more. The intercept adjusts accordingly.
+**Interpretation:** Increasing ![Formula](https://latex.codecogs.com/svg.image?\lambda) shrinks the slope coefficients more. The intercept adjusts accordingly.
 
 ---
 
 ## 7) Compact summary of computed numeric values
 
-* $X^\top X = \begin{bmatrix}4 & 10 & 14\\10 & 30 & 40\\14 & 40 & 54\end{bmatrix}$
+* ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X\;=\;\begin{bmatrix}4\;&\;10\;&\;14\\10\;&\;30\;&\;40\\14\;&\;40\;&\;54\end{bmatrix})
 
-* $X^\top y = \begin{bmatrix}22\\60\\82\end{bmatrix}$
+* ![Formula](https://latex.codecogs.com/svg.image?X^\top\;y\;=\;\begin{bmatrix}22\\60\\82\end{bmatrix})
 
 * **Pseudo-inverse OLS (one least-norm solution):**
 
-  $$
-  \hat\beta_{\text{pinv}} \approx \begin{bmatrix}1.66666667\\-0.33333333\\1.33333333\end{bmatrix}
-  $$
+  ![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{pinv}}\;\approx\;\begin{bmatrix}1.66666667\\-0.33333333\\1.33333333\end{bmatrix})
 
-  (Note: OLS closed-form inverse cannot be used because $X^\top X$ is singular.)
+  (Note: OLS closed-form inverse cannot be used because ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X) is singular.)
 
-* **Ridge ($\lambda=1$)**
+* **Ridge (![Formula](https://latex.codecogs.com/svg.image?\lambda=1))**
 
-  $$
-  \hat\beta_{\text{ridge},1} \approx \begin{bmatrix}2.77272727\\0.45454545\\0.45454545\end{bmatrix}
-  $$
+  ![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{ridge},1}\;\approx\;\begin{bmatrix}2.77272727\\0.45454545\\0.45454545\end{bmatrix})
 
-* **Ridge ($\lambda=10$)**
+* **Ridge (![Formula](https://latex.codecogs.com/svg.image?\lambda=10))**
 
-  $$
-  \hat\beta_{\text{ridge},10} = \begin{bmatrix}4.0\\0.25\\0.25\end{bmatrix}
-  $$
+  ![Formula](https://latex.codecogs.com/svg.image?\hat\beta_{\text{ridge},10}\;=\;\begin{bmatrix}4.0\\0.25\\0.25\end{bmatrix})
 
 ---
 
 ## 8) Quick checks / predicted values
 
-Use the $\lambda=1$ Ridge model to predict the first row (intercept + $x_1=1,x_2=2$):
+Use the ![Formula](https://latex.codecogs.com/svg.image?\lambda=1) Ridge model to predict the first row (intercept + ![Formula](https://latex.codecogs.com/svg.image?x_1=1,x_2=2)):
 
-$$
-\hat{y}_1 = 2.77272727 + 0.45454545\cdot 1 + 0.45454545\cdot 2
-= 2.77272727 + 0.45454545 + 0.90909090
-\approx 4.13636362
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{y}_1\;=\;2.77272727\;+\;0.45454545\cdot\;1\;+\;0.45454545\cdot\;2=\;2.77272727\;+\;0.45454545\;+\;0.90909090\approx\;4.13636362)
 
-Actual $y_1=4$. (This demonstrates generalization vs exact fit: because of shrinkage we don’t fit training targets exactly.)
+Actual ![Formula](https://latex.codecogs.com/svg.image?y_1=4). (This demonstrates generalization vs exact fit: because of shrinkage we don’t fit training targets exactly.)
 
 ---
 
 ## 9) What this calculation demonstrates (key takeaways)
 
-* The dataset has **perfect multicollinearity**: $x_2 = x_1 + 1$. That makes $X^\top X$ singular → OLS closed form fails (no unique solution).
-* Ridge adds $\lambda I$ (with intercept not penalized), making $X^\top X + \lambda I$ **invertible** for $\lambda>0$. That yields a **unique**, **stable** solution.
-* Larger $\lambda$ → stronger shrinkage → coefficients move toward zero (but typically not exactly zero).
+* The dataset has **perfect multicollinearity**: ![Formula](https://latex.codecogs.com/svg.image?x_2\;=\;x_1\;+\;1). That makes ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X) singular → OLS closed form fails (no unique solution).
+* Ridge adds ![Formula](https://latex.codecogs.com/svg.image?\lambda\;I) (with intercept not penalized), making ![Formula](https://latex.codecogs.com/svg.image?X^\top\;X\;+\;\lambda\;I) **invertible** for ![Formula](https://latex.codecogs.com/svg.image?\lambda>0). That yields a **unique**, **stable** solution.
+* Larger ![Formula](https://latex.codecogs.com/svg.image?\lambda) → stronger shrinkage → coefficients move toward zero (but typically not exactly zero).
 * The intercept is free to adjust when we choose not to penalize it.
 
 ---
 
 ## 10) If you'd like — I can also show:
 
-* The **full row-by-row arithmetic** for one of the inverse multiplications (i.e. multiply the inverse matrix by $X^\top y$ element-wise so you can see the dot-product sums producing each coefficient).
+* The **full row-by-row arithmetic** for one of the inverse multiplications (i.e. multiply the inverse matrix by ![Formula](https://latex.codecogs.com/svg.image?X^\top\;y) element-wise so you can see the dot-product sums producing each coefficient).
 * A small **NumPy script** that prints every step (matrix entries, inverses, intermediate vectors) so you can run it yourself and verify each numeric step.
 
 
@@ -595,9 +437,7 @@ X_scaled = scaler.fit_transform(X)
 
 📌 **Key Formula**:
 
-$$
-\hat{\beta}_{Ridge} = (X^T X + \lambda I)^{-1} X^T y
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}_{Ridge}\;=\;(X^T\;X\;+\;\lambda\;I)^{-1}\;X^T\;y)
 
 📌 **Key Point**: Ridge helps when OLS struggles with **overfitting** or **multicollinearity**, but it won’t remove features.
 
@@ -667,18 +507,16 @@ Lasso (Least Absolute Shrinkage and Selection Operator) Regression is a **linear
 
 ### **Lasso Cost Function**
 
-For $n$ samples, $p$ features:
+For ![Formula](https://latex.codecogs.com/svg.image?n) samples, ![Formula](https://latex.codecogs.com/svg.image?p) features:
 
-$$
-\text{Loss}(\beta) = \frac{1}{2n} \sum_{i=1}^n \left(y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij}\right)^2 + \lambda \sum_{j=1}^p |\beta_j|
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{Loss}(\beta)\;=\;\frac{1}{2n}\;\sum_{i=1}^n\;\left(y_i\;-\;\beta_0\;-\;\sum_{j=1}^p\;\beta_j\;x_{ij}\right)^2\;+\;\lambda\;\sum_{j=1}^p\;|\beta_j|)
 
 Where:
 
-* $y_i$ = actual output
-* $x_{ij}$ = j-th feature of i-th sample
-* $\beta_j$ = coefficient for j-th feature
-* $\lambda$ = regularization strength (**hyperparameter**)
+* ![Formula](https://latex.codecogs.com/svg.image?y_i) = actual output
+* ![Formula](https://latex.codecogs.com/svg.image?x_{ij}) = j-th feature of i-th sample
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_j) = coefficient for j-th feature
+* ![Formula](https://latex.codecogs.com/svg.image?\lambda) = regularization strength (**hyperparameter**)
 * First term = **Mean Squared Error (MSE)**
 * Second term = **L1 penalty**
 
@@ -686,8 +524,8 @@ Where:
 
 ### **Effect of L1 Penalty**
 
-* The $|\beta_j|$ term creates a **"pull towards zero"**.
-* For large enough $\lambda$, some $\beta_j$ become **exactly zero** → feature removed.
+* The ![Formula](https://latex.codecogs.com/svg.image?|\beta_j|) term creates a **"pull towards zero"**.
+* For large enough ![Formula](https://latex.codecogs.com/svg.image?\lambda), some ![Formula](https://latex.codecogs.com/svg.image?\beta_j) become **exactly zero** → feature removed.
 
 ---
 
@@ -695,8 +533,8 @@ Where:
 
 ### **Constraint Region**
 
-* Lasso constraint: $\sum |\beta_j| \leq t$ → **diamond-shaped region**.
-* Ridge constraint: $\sum \beta_j^2 \leq t$ → **circle/ellipse**.
+* Lasso constraint: ![Formula](https://latex.codecogs.com/svg.image?\sum\;|\beta_j|\;\leq\;t) → **diamond-shaped region**.
+* Ridge constraint: ![Formula](https://latex.codecogs.com/svg.image?\sum\;\beta_j^2\;\leq\;t) → **circle/ellipse**.
 
 📍 **Why Lasso gives zero coefficients:**
 The corners (vertices) of the diamond often lie exactly on an axis → one coefficient = 0.
@@ -730,9 +568,7 @@ Let’s use a **tiny dataset**:
 
 OLS solution (no regularization) gives:
 
-$$
-\beta_0 = 1, \quad \beta_1 = 2, \quad \beta_2 = 1
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_0\;=\;1,\;\quad\;\beta_1\;=\;2,\;\quad\;\beta_2\;=\;1)
 
 Now apply **L1 penalty with λ = 1** (simplified 1D case explanation):
 
@@ -741,19 +577,13 @@ Now apply **L1 penalty with λ = 1** (simplified 1D case explanation):
 
 Here:
 
-$$
-\beta_1: 2 \rightarrow 2 - 1 = 1
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_1:\;2\;\rightarrow\;2\;-\;1\;=\;1)
 
-$$
-\beta_2: 1 \rightarrow 1 - 1 = 0
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_2:\;1\;\rightarrow\;1\;-\;1\;=\;0)
 
 So final Lasso coefficients:
 
-$$
-\beta_0 = 1, \quad \beta_1 = 1, \quad \beta_2 = 0
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_0\;=\;1,\;\quad\;\beta_1\;=\;1,\;\quad\;\beta_2\;=\;0)
 
 → x₂ completely removed.
 
@@ -835,7 +665,7 @@ print("MSE:", mean_squared_error(y_test, y_pred))
 
 | Feature           | OLS         | Ridge (L2)        | Lasso (L1)            | Elastic Net (L1 + L2)        |   |                |
 | ----------------- | ----------- | ----------------- | --------------------- | ---------------------------- | - | -------------- |
-| Penalty           | None        | $\sum \beta_j^2$  | ( \sum                | \beta\_j                     | ) | Both L1 and L2 |
+| Penalty           | None        | ![Formula](https://latex.codecogs.com/svg.image?\sum\;\beta_j^2)  | ( \sum                | \beta\_j                     | ) | Both L1 and L2 |
 | Shrinks Coefs     | ❌ No        | ✅ Yes             | ✅ Yes                 | ✅ Yes                        |   |                |
 | Coefs = 0         | ❌ No        | ❌ No              | ✅ Yes                 | ✅ Yes (some)                 |   |                |
 | Feature Selection | ❌ No        | ❌ No              | ✅ Yes                 | ✅ Yes                        |   |                |
@@ -875,28 +705,24 @@ It was developed to overcome **two key limitations**:
 
 ## **2. Mathematical Definition**
 
-For $n$ samples and $p$ features:
+For ![Formula](https://latex.codecogs.com/svg.image?n) samples and ![Formula](https://latex.codecogs.com/svg.image?p) features:
 
-$$
-\text{Loss}(\beta) =
-\frac{1}{2n} \sum_{i=1}^n \left( y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij} \right)^2
-+ \lambda \left[ \alpha \sum_{j=1}^p |\beta_j| + \frac{1 - \alpha}{2} \sum_{j=1}^p \beta_j^2 \right]
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{Loss}(\beta)\;=\frac{1}{2n}\;\sum_{i=1}^n\;\left(\;y_i\;-\;\beta_0\;-\;\sum_{j=1}^p\;\beta_j\;x_{ij}\;\right)^2+\;\lambda\;\left[\;\alpha\;\sum_{j=1}^p\;|\beta_j|\;+\;\frac{1\;-\;\alpha}{2}\;\sum_{j=1}^p\;\beta_j^2\;\right])
 
 ### **Terms Explained**
 
-* $y_i$ → actual target value
-* $x_{ij}$ → j-th feature for i-th sample
-* $\beta_j$ → coefficient for feature j
+* ![Formula](https://latex.codecogs.com/svg.image?y_i) → actual target value
+* ![Formula](https://latex.codecogs.com/svg.image?x_{ij}) → j-th feature for i-th sample
+* ![Formula](https://latex.codecogs.com/svg.image?\beta_j) → coefficient for feature j
 * **First term:** Mean Squared Error (MSE)
 * **Second term:** Regularization penalty
 
-  * $\alpha$ → **mixing parameter** (0 ≤ α ≤ 1)
+  * ![Formula](https://latex.codecogs.com/svg.image?\alpha) → **mixing parameter** (0 ≤ α ≤ 1)
 
     * α = 1 → Pure Lasso
     * α = 0 → Pure Ridge
     * 0 < α < 1 → Combination
-  * $\lambda$ → **regularization strength**
+  * ![Formula](https://latex.codecogs.com/svg.image?\lambda) → **regularization strength**
 
     * Larger λ → stronger penalty → more shrinkage
 
@@ -933,15 +759,10 @@ $$
 
 Elastic Net minimization problem:
 
-$$
-\hat{\beta} = \arg\min_{\beta} \left\{
-\frac{1}{2n} \| y - X\beta \|_2^2
-+ \lambda \left[ \alpha \|\beta\|_1 + \frac{1-\alpha}{2} \|\beta\|_2^2 \right]
-\right\}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\hat{\beta}\;=\;\arg\min_{\beta}\;\left\{\frac{1}{2n}\;\|\;y\;-\;X\beta\;\|_2^2+\;\lambda\;\left[\;\alpha\;\|\beta\|_1\;+\;\frac{1-\alpha}{2}\;\|\beta\|_2^2\;\right]\right\})
 
-* $\|\beta\|_1 = \sum |\beta_j|$ → promotes sparsity
-* $\|\beta\|_2^2 = \sum \beta_j^2$ → promotes small but nonzero coefficients
+* ![Formula](https://latex.codecogs.com/svg.image?\|\beta\|_1\;=\;\sum\;|\beta_j|) → promotes sparsity
+* ![Formula](https://latex.codecogs.com/svg.image?\|\beta\|_2^2\;=\;\sum\;\beta_j^2) → promotes small but nonzero coefficients
 
 The **solution path** is found via coordinate descent, similar to Lasso, but with additional shrinkage from L2.
 
@@ -1060,9 +881,7 @@ Dataset:
 
 OLS solution (no regularization):
 
-$$
-\beta_1 = 2, \quad \beta_2 = 1
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_1\;=\;2,\;\quad\;\beta_2\;=\;1)
 
 Elastic Net with λ = 1, α = 0.5:
 
@@ -1070,9 +889,7 @@ Elastic Net with λ = 1, α = 0.5:
 * L2 part further scales coefficients down
   Result:
 
-$$
-\beta_1 \approx 1.2, \quad \beta_2 \approx 0.4
-$$
+![Formula](https://latex.codecogs.com/svg.image?\beta_1\;\approx\;1.2,\;\quad\;\beta_2\;\approx\;0.4)
 
 (Smaller, more stable values)
 
@@ -1119,13 +936,11 @@ Two key sources of error influence model performance:
   The error from **wrong assumptions** in the learning algorithm.
   A high-bias model is too **simplistic** and fails to capture the underlying patterns.
 * **Mathematical Definition:**
-  If $\hat{f}(x)$ is our predicted function:
+  If ![Formula](https://latex.codecogs.com/svg.image?\hat{f}(x)) is our predicted function:
 
-  $$
-  \text{Bias}(x) = E[\hat{f}(x)] - f(x)
-  $$
+  ![Formula](https://latex.codecogs.com/svg.image?\text{Bias}(x)\;=\;E[\hat{f}(x)]\;-\;f(x))
 
-  where $f(x)$ is the true function.
+  where ![Formula](https://latex.codecogs.com/svg.image?f(x)) is the true function.
 * **Example:**
   Using a straight line to fit a curved dataset.
 
@@ -1138,9 +953,7 @@ Two key sources of error influence model performance:
   A high-variance model **overreacts** to small changes in the training set.
 * **Mathematical Definition:**
 
-  $$
-  \text{Variance}(x) = E\left[ \left( \hat{f}(x) - E[\hat{f}(x)] \right)^2 \right]
-  $$
+  ![Formula](https://latex.codecogs.com/svg.image?\text{Variance}(x)\;=\;E\left[\;\left(\;\hat{f}(x)\;-\;E[\hat{f}(x)]\;\right)^2\;\right])
 * **Example:**
   A deep decision tree that changes drastically if a few training points are altered.
 
@@ -1164,41 +977,27 @@ Their sum → the **total error curve** — lowest point is the optimal complexi
 
 We analyze the **Mean Squared Error (MSE)**:
 
-$$
-\text{MSE}(x) = E\left[ \left( \hat{f}(x) - f(x) \right)^2 \right]
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{MSE}(x)\;=\;E\left[\;\left(\;\hat{f}(x)\;-\;f(x)\;\right)^2\;\right])
 
 ### **Step-by-Step Derivation:**
 
-1. Add and subtract $E[\hat{f}(x)]$:
+1. Add and subtract ![Formula](https://latex.codecogs.com/svg.image?E[\hat{f}(x)]):
 
-$$
-\text{MSE}(x) = E\left[ \left( \hat{f}(x) - E[\hat{f}(x)] + E[\hat{f}(x)] - f(x) \right)^2 \right]
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{MSE}(x)\;=\;E\left[\;\left(\;\hat{f}(x)\;-\;E[\hat{f}(x)]\;+\;E[\hat{f}(x)]\;-\;f(x)\;\right)^2\;\right])
 
-2. Expand using $(a+b)^2 = a^2 + 2ab + b^2$:
+2. Expand using ![Formula](https://latex.codecogs.com/svg.image?(a+b)^2\;=\;a^2\;+\;2ab\;+\;b^2):
 
-$$
-= E\left[ \left( \hat{f}(x) - E[\hat{f}(x)] \right)^2 \right]
-+ \left( E[\hat{f}(x)] - f(x) \right)^2
-+ 2\cdot 0
-$$
+![Formula](https://latex.codecogs.com/svg.image?=\;E\left[\;\left(\;\hat{f}(x)\;-\;E[\hat{f}(x)]\;\right)^2\;\right]+\;\left(\;E[\hat{f}(x)]\;-\;f(x)\;\right)^2+\;2\cdot\;0)
 
 (Second term of expectation is zero because mean deviation is zero.)
 
-3. Add irreducible noise $\sigma^2$:
+3. Add irreducible noise ![Formula](https://latex.codecogs.com/svg.image?\sigma^2):
 
-$$
-\text{MSE}(x) = \underbrace{\text{Variance}(x)}_{\text{sensitivity to data}}
-+ \underbrace{\text{Bias}^2(x)}_{\text{wrong assumptions}}
-+ \underbrace{\sigma^2}_{\text{irreducible error}}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{MSE}(x)\;=\;\underbrace{\text{Variance}(x)}_{\text{sensitivity\;to\;data}}+\;\underbrace{\text{Bias}^2(x)}_{\text{wrong\;assumptions}}+\;\underbrace{\sigma^2}_{\text{irreducible\;error}})
 
 ✅ **Final formula:**
 
-$$
-\text{MSE} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
-$$
+![Formula](https://latex.codecogs.com/svg.image?\text{MSE}\;=\;\text{Bias}^2\;+\;\text{Variance}\;+\;\text{Irreducible\;Error})
 
 ---
 
