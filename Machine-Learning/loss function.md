@@ -290,3 +290,83 @@ print(ce_loss(y_pred, y_true))  # 0.417
 ```
 
 
+Got it — here’s a **visual mapping diagram** that connects **Loss Functions → Data Types → Activation Functions → Algorithm Choice** so you can quickly recall which one to use.
+
+---
+
+## **📊 Loss Function Selection Map**
+
+```
+          ┌───────────── Continuous Data ──────────────┐
+          │                                             │
+          ▼                                             ▼
+      MSE / MAE / Huber                           Imbalanced Continuous
+          │                                             │
+     Linear Activation                          Weighted MSE / Huber
+          │                                             │
+     SGD / Adam / RMSProp                         Adam / SGD
+
+────────────────────────────────────────────────────────────────────────────
+
+         ┌─────────────── Binary Classification ────────────────┐
+         │                                                       │
+         ▼                                                       ▼
+   Binary Cross-Entropy                                  Imbalanced Binary
+         │                                                       │
+     Sigmoid Activation                           Weighted BCE / Focal Loss
+         │                                                       │
+     SGD / Adam / RMSProp                             Adam / SGD / AdamW
+
+────────────────────────────────────────────────────────────────────────────
+
+         ┌──────────────── Multi-Class Classification ────────────────┐
+         │                                                             │
+         ▼                                                             ▼
+   Categorical Cross-Entropy                                  Imbalanced Multi-Class
+         │                                                             │
+   Softmax Activation                                   Weighted CE / Focal Loss
+         │                                                             │
+   SGD / Adam / AdamW                                         Adam / SGD
+
+────────────────────────────────────────────────────────────────────────────
+
+         ┌──────────────── Multi-Label Classification ─────────────────┐
+         │                                                              │
+         ▼                                                              ▼
+   BCE with Sigmoid per label                                   Imbalanced Multi-Label
+         │                                                              │
+   Sigmoid Activation                                        Weighted BCE / Focal Loss
+         │                                                              │
+   Adam / AdamW / RMSProp                                        Adam / SGD
+
+────────────────────────────────────────────────────────────────────────────
+
+         ┌─────────────────── Sequence Models / NLP ───────────────────┐
+         │                                                              │
+         ▼                                                              ▼
+   Cross-Entropy / NLL                                        Weighted CE (rare words)
+         │                                                              │
+   Log-Softmax + Embedding                                    Log-Softmax + Embedding
+         │                                                              │
+   Adam / AdamW / Adafactor                                     AdamW / Adafactor
+```
+
+---
+
+### **Legend**
+
+* **Activation Function**: Ensures outputs are in the right range (probabilities, continuous values, etc.).
+* **Algorithm Choice**: Optimizers suited for that loss type (some work better with sparse gradients, some with dense).
+* **Weighted / Focal Variants**: Use when **class imbalance** exists.
+
+---
+
+### **💡 Quick Memory Rule**
+
+1. **Continuous data → Linear activation + MSE/MAE/Huber**
+2. **Binary classification → Sigmoid + BCE**
+3. **Multi-class → Softmax + Categorical Cross-Entropy**
+4. **Multi-label → Sigmoid + BCE**
+5. **Sequences/NLP → Log-Softmax + Cross-Entropy/NLL**
+
+---
