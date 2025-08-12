@@ -877,11 +877,8 @@ It was developed to overcome **two key limitations**:
 
 For $n$ samples and $p$ features:
 
-$$
-\text{Loss}(\beta) =
-\frac{1}{2n} \sum_{i=1}^n \left( y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij} \right)^2
-+ \lambda \left[ \alpha \sum_{j=1}^p |\beta_j| + \frac{1 - \alpha}{2} \sum_{j=1}^p \beta_j^2 \right]
-$$
+![Loss Function](https://latex.codecogs.com/png.latex?\Large\text{Loss}(\beta)=\frac{1}{2n}\sum_{i=1}^n(y_i-\beta_0-\sum_{j=1}^p\beta_jx_{ij})^2+\lambda[\alpha\sum_{j=1}^p|\beta_j|+\frac{1-\alpha}{2}\sum_{j=1}^p\beta_j^2])
+
 
 ### **Terms Explained**
 
