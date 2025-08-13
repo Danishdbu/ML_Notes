@@ -251,9 +251,9 @@ We include an intercept term in $X$. So the design matrix $X$ (with column 1 = i
 $$
 X \;=\;
 \begin{bmatrix}
-1 & 1 & 2\\[4pt]
-1 & 2 & 3\\[4pt]
-1 & 3 & 4\\[4pt]
+1 & 1 & 2\\
+1 & 2 & 3\\
+1 & 3 & 4\\
 1 & 4 & 5
 \end{bmatrix}
 ,\qquad
@@ -269,8 +269,8 @@ $$
 $$
 X^\top X =
 \begin{bmatrix}
-4 & 10 & 14\\[4pt]
-10 & 30 & 40\\[4pt]
+4 & 10 & 14\\
+10 & 30 & 40\\
 14 & 40 & 54
 \end{bmatrix}
 \qquad
@@ -302,8 +302,8 @@ Although $(X^\top X)^{-1}$ does not exist, the Moore–Penrose **pseudo-inverse*
 $$
 \hat\beta_{\text{pinv}} = X^{+} y \approx
 \begin{bmatrix}
-1.66666667\\[4pt]
--0.33333333\\[4pt]
+1.66666667\\
+-0.33333333\\
 1.33333333
 \end{bmatrix}
 $$
@@ -354,8 +354,8 @@ $$
 $$
 \bigl(X^\top X + 1\cdot I\bigr)^{-1} \approx
 \begin{bmatrix}
-2.38636364 & 0.22727273 & -0.77272727\\[4pt]
-0.22727273 & 0.54545455 & -0.45454545\\[4pt]
+2.38636364 & 0.22727273 & -0.77272727\\
+0.22727273 & 0.54545455 & -0.45454545\\
 -0.77272727 & -0.45454545 & 0.54545455
 \end{bmatrix}
 $$
@@ -367,8 +367,8 @@ Compute $\hat\beta_{\text{ridge},\lambda=1} = A^{-1} (X^\top y)$:
 $$
 \hat\beta_{\text{ridge},\lambda=1} \approx
 \begin{bmatrix}
-2.77272727\\[4pt]
-0.45454545\\[4pt]
+2.77272727\\
+0.45454545\\
 0.45454545
 \end{bmatrix}
 $$
@@ -413,8 +413,8 @@ $$
 $$
 \bigl(X^\top X + 10 I\bigr)^{-1} \approx
 \begin{bmatrix}
-1.200 & -0.100 & -0.200\\[4pt]
--0.100 & 0.075 & -0.025\\[4pt]
+1.200 & -0.100 & -0.200\\
+-0.100 & 0.075 & -0.025\\
 -0.200 & -0.025 & 0.075
 \end{bmatrix}
 $$
@@ -424,8 +424,8 @@ $$
 $$
 \hat\beta_{\text{ridge},\lambda=10} =
 \begin{bmatrix}
-4.0\\[4pt]
-0.25\\[4pt]
+4.0\\
+0.25\\
 0.25
 \end{bmatrix}
 $$
