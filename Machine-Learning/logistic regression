@@ -1,0 +1,75 @@
+# Logistic Regression: Logit Function Explanation
+
+## Logistic Regression Equation
+
+The logistic regression model is defined using the **logit function**:
+
+\[
+\log\left(\frac{p(X)}{1 - p(X)}\right) = \beta_0 + \beta_1 X
+\]
+
+---
+
+## What this equation means
+
+This equation models the relationship between an input variable \( X \) and the probability of a binary outcome.
+
+### Term-by-term explanation
+
+- **\( p(X) \)**  
+  The predicted probability that the outcome is **positive** (class = 1) given input \( X \).
+
+- **\( 1 - p(X) \)**  
+  The probability that the outcome is **negative** (class = 0).
+
+- **\( \frac{p(X)}{1 - p(X)} \)**  
+  The **odds** of the positive outcome occurring.
+
+- **\( \log\left(\frac{p(X)}{1 - p(X)}\right) \)**  
+  The **log-odds (logit)**.  
+  This transforms probabilities (between 0 and 1) into values ranging from \(-\infty\) to \(+\infty\).
+
+- **\( \beta_0 \)**  
+  The **intercept (bias)** term.  
+  It represents the log-odds when \( X = 0 \).
+
+- **\( \beta_1 \)**  
+  The **coefficient (weight)** for the predictor \( X \).  
+  It indicates how much the log-odds change when \( X \) increases by one unit.
+
+- **\( X \)**  
+  The input feature (independent variable).
+
+---
+
+## Why the logit function is used
+
+- Linear regression can predict values outside the range \([0, 1]\), which is invalid for probabilities.
+- The logit function allows logistic regression to:
+  - Model a **linear relationship** between inputs and log-odds
+  - Convert that linear output into a **valid probability** using the sigmoid function
+
+---
+
+## Inverse of the logit (Sigmoid function)
+
+Applying the inverse of the logit gives the probability:
+
+\[
+p(X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X)}}
+\]
+
+This ensures:
+- Output is always between **0 and 1**
+- The model can be used for **binary classification**
+
+---
+
+## Summary
+
+- Logistic regression performs **linear regression on log-odds**
+- The logit function connects probabilities to a linear model
+- The sigmoid function converts log-odds back into probabilities
+- Classification decisions are made by applying a threshold (e.g., 0.5)
+
+---
